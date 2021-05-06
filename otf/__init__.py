@@ -426,9 +426,9 @@ class OTF_ScanSet:
         offpulses = [RA_offpulse, Dec_offpulse]
         """
 
-        if profilefiles is None:
+        if profilefiles is None or len(profilefiles)==0:
             profilefiles = [None, None]
-        if offpulses is None:
+        if offpulses is None or len(offpulses)==0:
             offpulses = [None, None]
         self.scan_RA = OTF_Scan(
             pfds[0],
@@ -487,7 +487,7 @@ class OTF_ScanSet:
             self.scan_RA.Dec.mean()
         )
         position_Dec = self.scan_Dec.Dec.mean() + self.offset_Dec
-        if plot:
+        if plot is not None and plot:
             SNR_RA = self.scan_RA.rolling_SNR(l=l)
             SNR_Dec = self.scan_Dec.rolling_SNR(l=l)
             plt.clf()
@@ -518,5 +518,8 @@ class OTF_ScanSet:
             plt.xlabel("Position Offset (deg)")
             plt.ylabel("SNR")
             plt.legend()
+            if isinstance(plot, str):
+                plt.savefig(plot)
+                print(f"Output saved to {plot}")
 
         return SkyCoord(position_RA, position_Dec)
