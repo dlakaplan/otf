@@ -10,14 +10,10 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
     parser.add_argument(
-        "--pfd", type=str, nargs="2", required=True, help="Input PFD files"
+        "--pfd", type=str, nargs=2, required=True, help="Input PFD files"
     )
     parser.add_argument(
-        "--pointing",
-        type=str,
-        nargs=2,
-        required=True,
-        help="Input pointing tables",
+        "--pointing", type=str, nargs=2, required=True, help="Input pointing tables",
     )
     parser.add_argument(
         "--profile",
@@ -36,23 +32,31 @@ def main():
         "--noroll", action="store_false", help="Do not auto-roll the pulses"
     )
 
-   parser.add_argument("--offpulse",default=None,nargs=2,
-                       help="Off-pulse windows (e.g., '[[0,0.2],[0.8,1.0]]' for each scan)")
-   parser.add_argument("--plot",default=None,help="Name of output plot")
+    parser.add_argument(
+        "--offpulse",
+        default=None,
+        nargs=2,
+        help="Off-pulse windows (e.g., '[[0,0.2],[0.8,1.0]]' for each scan)",
+    )
+    parser.add_argument("--plot", default=None, help="Name of output plot")
 
-   args = parser.parse_args()
+    args = parser.parse_args()
 
-   o = OTF_ScanSet(
-       args.pfd,
-       args.pointing,
-       profilefiles = args.profile,
-       offpulses=args.offpulse,
-       autoroll=~args.noroll,
-       )
+    o = otf.OTF_ScanSet(
+        args.pfd,
+        args.pointing,
+        profilefiles=args.profile,
+        offpulses=args.offpulse,
+        autoroll=~args.noroll,
+    )
 
-   p = o.fit_offsets(l=args.length, plot=args.plot)
-   print("From {} and {} determined best-fit position of {}".format(args.pfd[0],
-                                                                    args.pdf[1],
-                                                                    p))
+    p = o.fit_offsets(l=args.length, plot=args.plot)
+    print(
+        "From {} and {} determined best-fit position of {}".format(
+            args.pfd[0], args.pfd[1], p.to_string("hmsdms")
+        )
+    )
+
+
 if __name__ == "__main__":
     main()

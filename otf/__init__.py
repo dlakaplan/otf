@@ -1,4 +1,7 @@
-# from presto.prepfold import pfd
+try:
+    from presto.prepfold import pfd
+except ImportError:
+    print("PRESTO python libraries not available")
 import numpy as np
 from astropy import units as u, constants as c
 from astropy.table import Table, Column
