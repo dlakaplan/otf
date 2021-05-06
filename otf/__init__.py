@@ -25,7 +25,7 @@ def extract_pointing(fitsfile, suffix="pointing", format="ecsv"):
                 Column(f[1].data["DEC_SUB"], name="DEC_SUB"),
             ]
         )
-        outfile = os.splitext(fitsfile)[0] + f".{suffix}." + format
+        outfile = os.path.splitext(fitsfile)[0] + f".{suffix}." + format
         t.write(outfile, overwrite=True)
         return outfile
 

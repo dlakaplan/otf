@@ -11,7 +11,7 @@ def main():
     )
 
     parser.add_argument("files", type=str, nargs="+", help="Input PSRFITS file(s)")
-    parser.add_arcument(
+    parser.add_argument(
         "-s",
         "--suffix",
         type=str,
@@ -19,7 +19,7 @@ def main():
         help="Suffix to append for output files",
     )
     parser.add_argument(
-        "--format", choices=["ecsv", "fits"], help="Format of output table"
+        "--format", default="ecsv",choices=["ecsv", "fits"], help="Format of output table"
     )
 
     args = parser.parse_args()
