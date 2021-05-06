@@ -14,4 +14,4 @@ On-the-fly pulsar mapping
 * Then get the position from the `pfd` files:
   * `fit_otf --pfd vegas_59328_55419_J2035+36_0001_0001_ACCEL_Cand_13.pfd vegas_59328_56190_J2035+36_0002_0001_ACCEL_Cand_2.pfd --pointing vegas_59328_55419_J2035+36_0001_0001.pointing.ecsv vegas_59328_56190_J2035+36_0002_0001.pointing.ecsv --plot=test.png`
   * Should return `20h35m23.7488s +36d56m12.1434s` and make the plot below (see `example/` directory for files):
-   [Output plot](examples/test.png)
+   ![Output plot](examples/test.png)
