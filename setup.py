@@ -11,6 +11,7 @@ setup(
     entry_points={
         "console_scripts": [
             "extract_pointing=otf.scripts.extract_pointing:main",
+            "fit_otf=otf.scripts.fit_otf:main",
         ],
     },
     python_requires=">=3.7",

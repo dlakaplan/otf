@@ -54,3 +54,5 @@ def main():
    print("From {} and {} determined best-fit position of {}".format(args.pfd[0],
                                                                     args.pdf[1],
                                                                     p))
+if __name__ == "__main__":
+    main()
