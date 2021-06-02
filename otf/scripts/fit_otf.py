@@ -41,13 +41,16 @@ def main():
     parser.add_argument("--plot", default=None, help="Name of output plot")
 
     args = parser.parse_args()
-    offpulses = list(map(eval, args.offpulse))
+    if args.offpulse is not None:
+        offpulses = list(map(eval, args.offpulse))
+    else:
+        offpulses = None
 
     o = otf.OTF_ScanSet(
         args.pfd,
         args.pointing,
         profilefiles=args.profile,
-        offpulses=list(map(eval, args.offpulse)),
+        offpulses=offpulses,
         autoroll=~args.noroll,
     )
 
